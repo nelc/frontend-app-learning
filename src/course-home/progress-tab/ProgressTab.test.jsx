@@ -1237,7 +1237,6 @@ describe('Progress Tab', () => {
           month: 'long',
           day: 'numeric',
         }),
-        { exact: false },
       )).toBeInTheDocument();
     });
   });

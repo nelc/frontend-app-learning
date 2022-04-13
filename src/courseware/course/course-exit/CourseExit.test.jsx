@@ -424,7 +424,6 @@ describe('Course Exit Pages', () => {
           month: 'long',
           day: 'numeric',
         }),
-        { exact: false },
       )).toBeInTheDocument();
     });
   });
