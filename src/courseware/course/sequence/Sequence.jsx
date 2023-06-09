@@ -13,6 +13,7 @@ import { useSelector } from 'react-redux';
 import { history } from '@edx/frontend-platform';
 import SequenceExamWrapper from '@edx/frontend-lib-special-exams';
 import { breakpoints, useWindowSize } from '@edx/paragon';
+import { LikeDislikeUnit } from '@edunext/frontend-essentials';
 
 import PageLoading from '../../../generic/PageLoading';
 import { useModel } from '../../../generic/model-store';
@@ -174,6 +175,9 @@ const Sequence = ({
             unitId={unitId}
             unitLoadedHandler={handleUnitLoaded}
           />
+          {unitHasLoaded && (
+          <LikeDislikeUnit courseId={courseId} unitId={unitId} />
+          )}
           {unitHasLoaded && (
           <UnitNavigation
             sequenceId={sequenceId}
