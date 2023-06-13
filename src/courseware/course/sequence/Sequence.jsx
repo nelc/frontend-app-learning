@@ -13,6 +13,7 @@ import { useSelector } from 'react-redux';
 import { history } from '@edx/frontend-platform';
 import SequenceExamWrapper from '@edx/frontend-lib-special-exams';
 import { breakpoints, useWindowSize } from '@edx/paragon';
+import { ReportButton, LikeDislikeUnit } from '@edunext/frontend-essentials';
 
 import PageLoading from '../../../generic/PageLoading';
 import { useModel } from '../../../generic/model-store';
@@ -175,19 +176,26 @@ const Sequence = ({
             unitLoadedHandler={handleUnitLoaded}
           />
           {unitHasLoaded && (
-          <UnitNavigation
-            sequenceId={sequenceId}
-            unitId={unitId}
-            onClickPrevious={() => {
-              logEvent('edx.ui.lms.sequence.previous_selected', 'bottom');
-              handlePrevious();
-            }}
-            onClickNext={() => {
-              logEvent('edx.ui.lms.sequence.next_selected', 'bottom');
-              handleNext();
-            }}
-            goToCourseExitPage={() => goToCourseExitPage()}
-          />
+            <>
+              <div className="nelp-container">
+                <LikeDislikeUnit courseId={courseId} unitId={unitId} />
+                <ReportButton courseId={courseId} unitId={unitId} />
+              </div>
+
+              <UnitNavigation
+                sequenceId={sequenceId}
+                unitId={unitId}
+                onClickPrevious={() => {
+                  logEvent('edx.ui.lms.sequence.previous_selected', 'bottom');
+                  handlePrevious();
+                }}
+                onClickNext={() => {
+                  logEvent('edx.ui.lms.sequence.next_selected', 'bottom');
+                  handleNext();
+                }}
+                goToCourseExitPage={() => goToCourseExitPage()}
+              />
+            </>
           )}
         </div>
       </div>
