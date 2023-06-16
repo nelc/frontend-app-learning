@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@edunext/frontend-essentials": "^1.2.0",
-    "@edx/brand": "npm:@edx/brand-openedx@1.2.0",
+    "@edx/brand": "github:nelc/brand-openedx#ednx-release/mango.nelp",
     "@edx/frontend-component-footer": "11.6.3",
     "@edx/frontend-component-header": "3.6.4",
     "@edx/frontend-lib-special-exams": "2.2.1",
