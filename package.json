@@ -29,7 +29,7 @@
     "url": "https://github.com/openedx/frontend-app-learning/issues"
   },
   "dependencies": {
-    "@edunext/frontend-essentials": "^1.1.1",
+    "@edunext/frontend-essentials": "^1.2.0",
     "@edx/brand": "npm:@edx/brand-openedx@1.2.0",
     "@edx/frontend-component-footer": "11.6.3",
     "@edx/frontend-component-header": "3.6.4",
