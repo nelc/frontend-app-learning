@@ -44,8 +44,8 @@ function getCourseExitMode(
   // in a certificate-earning mode, but the certificate is not available (maybe they didn't pass
   // or course is not set up for certificates or something). Audit users will always have a
   // certificateData sent over.
-  let isCelebratoryStatus = true;
-  let isEligibleForCertificate = true;
+  let isCelebratoryStatus = false;
+  let isEligibleForCertificate = false;
 
   if (certificateData) {
     const { certStatus } = certificateData;
