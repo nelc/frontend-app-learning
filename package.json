@@ -29,7 +29,7 @@
     "url": "https://github.com/openedx/frontend-app-learning/issues"
   },
   "dependencies": {
-    "@edunext/frontend-essentials": "^1.4.0",
+    "@edunext/frontend-essentials": "0.1.5-test-coursename",
     "@edx/brand": "github:nelc/brand-openedx#ednx-release/mango.nelp",
     "@edx/frontend-component-footer": "11.6.3",
     "@edx/frontend-component-header": "3.6.4",

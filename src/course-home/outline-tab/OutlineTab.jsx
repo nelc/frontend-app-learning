@@ -6,7 +6,9 @@ import { getAuthenticatedUser } from '@edx/frontend-platform/auth';
 import { history } from '@edx/frontend-platform';
 import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import { Button } from '@edx/paragon';
-import { FeedbackModal, useProgressStatus } from '@edunext/frontend-essentials';
+import {
+  FeedbackModal, useProgressStatus, StatsContainer, FeedbackCarousel,
+} from '@edunext/frontend-essentials';
 import { AlertList } from '../../generic/user-messages';
 
 import CourseDates from './widgets/CourseDates';
@@ -213,6 +215,8 @@ const OutlineTab = ({ intl }) => {
           </div>
         )}
         <FeedbackModal courseId={courseId} showModal={isGraded ? isPassing : isComplete} />
+        <FeedbackCarousel />
+        <StatsContainer showCourses showInstructors showLearners showVideos showProblems />
       </div>
     </>
   );
