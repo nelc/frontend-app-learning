@@ -5,30 +5,30 @@ on:
     branches:
       - ednx-release/mango.nelp
       - ednx-rc/mango.nelp
-      
+
   pull_request:
     branches:
        - "**ednx-rc**"
 jobs:
   build:
-    environment: 
+    environment:
       name: ${{ github.ref_name == 'ednx-release/mango.nelp' && 'prod' || 'stage' }}
     runs-on: ubuntu-latest
     steps:
-    
+
     - name: "Echo job  vars"
       env:
         JOB_VARS: ${{ toJson(vars) }}
-      run: echo "$JOB_VARS"  
-  
+      run: echo "$JOB_VARS"
+
     - name: checkout mfe repo
       uses: actions/checkout@v3
-       
+
     - name: Use Node.js ${{ vars.NODE_VERSION }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ vars.NODE_VERSION }}
-        
+
     - name: Cache node modules
       id: cache-npm
       uses: actions/cache@v3
@@ -47,10 +47,10 @@ jobs:
       name: List the state of node modules
       continue-on-error: true
       run: npm list
-  
+
     - name: npm Install
       run: npm install
-          
+
     - name: npm Build  # check env variables of repo.
       run: npm run build
       env:
@@ -60,10 +60,10 @@ jobs:
         MFE_CONFIG_API_URL: ${{ vars.MFE_CONFIG_API_URL }}
         ENABLE_NEW_RELIC: false
         NODE_ENV: production
-        
+
     - name: print generated html of mfe
       run: cat dist/index.html
-      
+
     - name: Share artifact inside workflow
       uses: actions/upload-artifact@v3
       with:
@@ -71,7 +71,7 @@ jobs:
         path: dist
 
   deployment:
-    environment: 
+    environment:
       name: ${{ github.ref_name == 'ednx-release/mango.nelp' && 'prod' || 'stage' }}
       url: ${{ vars.PUBLIC_PATH_CDN }}
     runs-on: ubuntu-latest
@@ -82,7 +82,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: ${{ vars.APP_ID }}-dist-artifact
-          
+
       - name: "Echo job  vars"
         env:
           JOB_VARS: ${{ toJson(vars) }}
@@ -100,3 +100,7 @@ jobs:
           aws s3 sync . $S3_BUCKET
         env:
           S3_BUCKET: s3://${{ vars.BUCKET_NAME }}${{ vars.PUBLIC_PATH }} --delete
+
+      - name: Invalidate past cloudfront cache
+        run: |
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
