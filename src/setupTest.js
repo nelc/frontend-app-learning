@@ -50,6 +50,18 @@ export const authenticatedUser = {
   administrator: false,
 };
 
+// This required to set the default state of the useParagonTheme hook
+// If this is not added the some components won't be rendered since the
+// AppProvider is conditioned to hook state specifically its key isThemeLoaded
+// must be true to render any component.
+jest.mock('@edx/frontend-platform/react/hooks', () => ({
+  ...jest.requireActual('@edx/frontend-platform/react/hooks'),
+  useParagonTheme: jest.fn().mockImplementation(() => [
+    { isThemeLoaded: true, themeVariant: 'light' },
+    jest.fn(),
+  ]),
+}));
+
 export function initializeMockApp() {
   mergeConfig({
     CONTACT_URL: process.env.CONTACT_URL || null,
