@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import { Collapsible, IconButton } from '@edx/paragon';
-import { faCheckCircle as fasCheckCircle, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle as fasCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { Minus, Plus } from '@edx/paragon/icons';
 import { faCheckCircle as farCheckCircle } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -82,7 +83,7 @@ const Section = ({
         iconWhenClosed={(
           <IconButton
             alt={intl.formatMessage(messages.openSection)}
-            icon={faPlus}
+            iconAs={Plus}
             onClick={() => { setOpen(true); }}
             size="sm"
           />
@@ -90,7 +91,7 @@ const Section = ({
         iconWhenOpen={(
           <IconButton
             alt={intl.formatMessage(genericMessages.close)}
-            icon={faMinus}
+            iconAs={Minus}
             onClick={() => { setOpen(false); }}
             size="sm"
           />
