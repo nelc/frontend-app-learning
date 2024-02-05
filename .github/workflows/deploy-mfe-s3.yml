@@ -1,12 +1,13 @@
 name: MFE S3 Bucket Deployment 🚀
 
 env:
-  RELEASE_VERSION: unset ## Set this variable in your branch to activate the production deployments.
+  RELEASE_VERSION: palm
 
 on:
   push:
     branches:
-      - unset ## Specify the branches that should trigger this action.
+      - open-release/palm.nelp
+      - open-rc/palm.nelp
 
   pull_request:
     branches:
