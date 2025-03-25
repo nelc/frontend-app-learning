@@ -31,8 +31,8 @@ on:
 
 jobs:
   deployment:
-    if: github.ref_name == vars.PROD_BRANCH || inputs.environment == 'stage'
+    if: github.ref == github.event.repository.default_branch || inputs.environment == 'stage'
     uses: nelc/actions-hub/.github/workflows/mfe-s3-bucket-deployment.yml@main
     with:
-      ENVIRONMENT: ${{ inputs.environment || 'stage' }}
+      ENVIRONMENT: ${{ inputs.environment }}
     secrets: inherit
