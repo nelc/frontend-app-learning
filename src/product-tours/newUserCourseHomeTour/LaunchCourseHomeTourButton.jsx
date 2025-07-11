@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { sendTrackEvent } from '@edx/frontend-platform/analytics';
 import { getAuthenticatedUser } from '@edx/frontend-platform/auth';
 import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
-import { Button, Icon } from '@openedx/paragon';
-import { Compass } from '@openedx/paragon/icons';
+import { Button } from '@openedx/paragon';
+import CompassIcon from './compass.svg';
 
 import { useModel } from '../../generic/model-store';
 import { launchCourseHomeTour } from '../data/slice';
@@ -45,11 +45,7 @@ const LaunchCourseHomeTourButton = ({ intl, srOnly }) => {
       {toursEnabled && (
         <Button variant="link" size="inline" className={`p-0 ${srOnly && 'sr-only sr-only-focusable'}`} onClick={handleClick}>
           {!srOnly && (
-            <Icon
-              src={Compass}
-              className="mr-2"
-              style={{ height: '18px', width: '18px' }}
-            />
+            <img src={CompassIcon} alt="Compass Icon" aria-hidden="true" />
           )}
           {intl.formatMessage(messages.launchTour)}
         </Button>

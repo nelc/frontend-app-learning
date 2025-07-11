@@ -2,9 +2,6 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import { Collapsible, IconButton, Icon } from '@openedx/paragon';
-import { faCheckCircle as fasCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import { faCheckCircle as farCheckCircle } from '@fortawesome/free-regular-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { Add, DisabledVisible, Minus } from '@openedx/paragon/icons';
 import SequenceLink from './SequenceLink';
@@ -12,6 +9,7 @@ import { useModel } from '../../generic/model-store';
 
 import genericMessages from '../../generic/messages';
 import messages from './messages';
+import { ReactComponent as CheckCircleIcon } from './check-circle.svg';
 
 const Section = ({
   courseId,
@@ -44,28 +42,12 @@ const Section = ({
   }, []);
 
   const sectionTitle = (
-    <div className="d-flex row w-100 m-0">
+    <div className="d-flex row w-100 m-0 course-section-wrapper">
       <div className="col-auto p-0">
-        {complete ? (
-          <FontAwesomeIcon
-            icon={fasCheckCircle}
-            fixedWidth
-            className="float-left mt-1 text-success"
-            aria-hidden="true"
-            title={intl.formatMessage(messages.completedSection)}
-          />
-        ) : (
-          <FontAwesomeIcon
-            icon={farCheckCircle}
-            fixedWidth
-            className="float-left mt-1 text-gray-400"
-            aria-hidden="true"
-            title={intl.formatMessage(messages.incompleteSection)}
-          />
-        )}
+        <CheckCircleIcon style={{ color: complete ? 'green' : 'gray' }} />
       </div>
-      <div className="col-7 ml-3 p-0 font-weight-bold text-dark-500">
-        <span className="align-middle col-6">{title}</span>
+      <div className="col-7 p-0 font-weight-bold text-dark-500 section-heading">
+        <span className="align-middle col-6 p-0">{title}</span>
         <span className="sr-only">
           , {intl.formatMessage(complete ? messages.completedSection : messages.incompleteSection)}
         </span>

@@ -7,15 +7,13 @@ import {
   injectIntl,
   intlShape,
 } from '@edx/frontend-platform/i18n';
-import { faCheckCircle as fasCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import { faCheckCircle as farCheckCircle } from '@fortawesome/free-regular-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { Icon } from '@openedx/paragon';
 import { Block } from '@openedx/paragon/icons';
 import EffortEstimate from '../../shared/effort-estimate';
 import { useModel } from '../../generic/model-store';
 import messages from './messages';
+import { ReactComponent as CheckCircleIcon } from './check-circle.svg';
 
 const SequenceLink = ({
   id,
@@ -86,34 +84,18 @@ const SequenceLink = ({
   );
 
   return (
-    <li>
-      <div className={classNames('', { 'mt-2 pt-2 border-top border-light': !first })}>
-        <div className="row w-100 m-0">
+    <li className="sub-section-list-item">
+      <div className={classNames('', { '': !first })}>
+        <div className="row w-100 m-0 sub-section-wrapper">
           <div className="col-auto p-0">
-            {complete ? (
-              <FontAwesomeIcon
-                icon={fasCheckCircle}
-                fixedWidth
-                className="float-left text-success mt-1"
-                aria-hidden={complete}
-                title={intl.formatMessage(messages.completedAssignment)}
-              />
-            ) : (
-              <FontAwesomeIcon
-                icon={farCheckCircle}
-                fixedWidth
-                className="float-left text-gray-400 mt-1"
-                aria-hidden={complete}
-                title={intl.formatMessage(messages.incompleteAssignment)}
-              />
-            )}
+            <CheckCircleIcon style={{ color: complete ? 'green' : 'gray' }} />
           </div>
-          <div className="col-10 p-0 ml-3 text-break">
+          <div className="col-10 p-0 text-break inner-section-text">
             <span className="align-middle">{displayTitle}</span>
             <span className="sr-only">
               , {intl.formatMessage(complete ? messages.completedAssignment : messages.incompleteAssignment)}
             </span>
-            <EffortEstimate className="ml-3 align-middle" block={sequence} />
+            <EffortEstimate className=" align-middle" block={sequence} />
           </div>
         </div>
         {hideFromTOC && (
