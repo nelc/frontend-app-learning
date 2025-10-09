@@ -102,7 +102,7 @@ describe('Sequence', () => {
     waitFor(() => {
       expect(screen.queryByText('Loading locked content messaging...')).toBeInTheDocument();
       // `Previous`, `Prerequisite` and `Close Tray` buttons.
-      expect(screen.getAllByRole('button').length).toEqual(3);
+      expect(screen.getAllByRole('button').length).toEqual(5); // two more buttons like and dislike
       // `Next` button.
       expect(screen.getAllByRole('link').length).toEqual(1);
 
@@ -158,7 +158,7 @@ describe('Sequence', () => {
     waitFor(() => {
       expect(screen.findByText('Loading learning sequence...')).toBeInTheDocument();
       // `Previous`, `Prerequisite` and `Close Tray` buttons.
-      expect(screen.getAllByRole('button')).toHaveLength(3);
+      expect(screen.getAllByRole('button')).toHaveLength(5); // two more buttons like and dislike
       // Renders `Next` button.
       expect(screen.getAllByRole('link')).toHaveLength(1);
 
