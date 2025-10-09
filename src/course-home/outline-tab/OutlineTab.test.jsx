@@ -55,6 +55,7 @@ describe('Outline Tab', () => {
   const masqueradeUrl = `${getConfig().LMS_BASE_URL}/courses/${courseId}/masquerade`;
   const outlineUrl = `${getConfig().LMS_BASE_URL}/api/course_home/outline/${courseId}`;
   const proctoringInfoUrl = `${getConfig().EXAMS_BASE_URL}/api/v1/student/course_id/${encodeURIComponent(courseId)}/onboarding?username=MockUser`;
+  const progressUrl = `${getConfig().LMS_BASE_URL}/api/course_home/progress/${courseId}`;
 
   const store = initializeStore();
   const defaultMetadata = Factory.build('courseHomeMetadata');
@@ -94,6 +95,9 @@ describe('Outline Tab', () => {
       onboarding_link: 'test',
       expiration_date: null,
     });
+    // This will return  404 in order to set the failure behavior and don't set extra
+    // extra conditions required by the success path.
+    axiosMock.onGet(progressUrl).reply(404, {});
 
     // Mock courseware search params
     mockSearchParams();
