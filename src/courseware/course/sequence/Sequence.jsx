@@ -9,6 +9,7 @@ import {
 import { useIntl } from '@edx/frontend-platform/i18n';
 import { useSelector } from 'react-redux';
 import SequenceExamWrapper from '@edx/frontend-lib-special-exams';
+import { LikeDislikeUnit } from '@edunext/frontend-essentials';
 
 import PageLoading from '@src/generic/PageLoading';
 import { useModel } from '@src/generic/model-store';
@@ -224,7 +225,14 @@ const Sequence = ({
               isOriginalUserStaff={originalUserIsStaff}
               renderUnitNavigation={renderUnitNavigation}
             />
-            {unitHasLoaded && renderUnitNavigation(false)}
+            {unitHasLoaded && (
+              <>
+                <div className="nelp-container">
+                  <LikeDislikeUnit courseId={courseId} unitId={unitId} />
+                </div>
+                {renderUnitNavigation(false)}
+              </>
+            )}
           </div>
         </div>
         <RightSidebarSlot courseId={courseId} />

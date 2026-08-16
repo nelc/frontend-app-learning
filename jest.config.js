@@ -34,3 +34,7 @@ mergedConfig.transform['^.+\\.[tj]sx?$'] = [
 ];
 
 module.exports = mergedConfig;
+
+module.exports.transformIgnorePatterns = [
+  '/node_modules/(?!(@edx|@edunext|@openedx))',
+];
