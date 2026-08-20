@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@edunext/frontend-essentials": "^5.0.1",
-    "@edx/brand": "npm:@openedx/brand-openedx@^1.2.3",
+    "@edx/brand": "github:nelc/brand-openedx#open-release/verawood.nelp",
     "@edx/browserslist-config": "1.5.1",
     "@edx/frontend-component-footer": "^14.6.0",
     "@edx/frontend-component-header": "npm:@edunext/frontend-component-header@^8.2.2-nelp.1",
