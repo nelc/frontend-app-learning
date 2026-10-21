@@ -97,5 +97,10 @@
       }
     ],
     "normalizeFilenames": "^.+?(\\..+?)\\.\\w+$"
+  },
+  "overrides": {
+    "@edx/frontend-platform": {
+      "axios": "1.20.0"
+    }
   }
 }
